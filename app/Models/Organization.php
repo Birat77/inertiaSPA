@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Organization extends Model
 {
@@ -23,4 +24,15 @@ class Organization extends Model
         'country',
         'postal_code'
     ];
+
+    /**
+     * @param Builder $query
+     * @param string  $searchQuery
+     *
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, string $searchQuery): Builder
+    {
+        return $query->where('name', 'ilike', "%" . $searchQuery . "%");
+    }
 }

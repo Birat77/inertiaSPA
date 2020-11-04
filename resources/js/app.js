@@ -6,6 +6,8 @@
 |with the base Inertia page component.
 |----------------------------------------------------------------
 */
+require('./bootstrap');
+
 import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 
