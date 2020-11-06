@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'organizations', 'as' => 'organizations.'], function () {
+Route::group(['prefix' => 'organizations', 'as' => 'api.organizations.'], function () {
     Route::get('/', [\App\Http\Controllers\Api\OrganizationApiController::class, 'index'])->name('index');
 });
