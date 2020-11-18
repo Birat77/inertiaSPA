@@ -19,14 +19,21 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
+Route::get('/admin', function () {
+    return view('layouts.master');
+});
+Route::get('/home', function () {
+    return view('admin.icons');
+})->name('home');
+
 Route::get('/home', function () {
     return Inertia::render('Welcome', [
         'user' => ['name' => 'laravel', 'type' => 'spa']
     ]);
-})->middleware(['verified']);
-
+})->name('home');
+// ->middleware(['verified']);
 // Route::resource('organizations',  \App\Http\Controllers\OrganizationsController::class);
-Route::group(['prefix' => 'organizations', 'middleware' => 'verified'], function () {
+Route::group(['prefix' => 'organizations'], function () {
     Route::get('/', [\App\Http\Controllers\OrganizationsController::class, 'index'])->name('organizations.index');
     Route::post('/', [\App\Http\Controllers\OrganizationsController::class, 'store'])->name('organizations.store');
     Route::get('/create', [\App\Http\Controllers\OrganizationsController::class, 'create'])->name('organizations.create');
